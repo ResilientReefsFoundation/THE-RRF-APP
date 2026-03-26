@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Coral Branch Nursery Display</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Shim process for browser compatibility
+    window.process = {
+      env: { NODE_ENV: 'production' },
+      browser: true,
+      version: '',
+      versions: { node: false },
+      nextTick: function(callback) { setTimeout(callback, 0); }
+    };
+    window.global = window;
+
+    // Hard block for multi-touch (pinch) zooming
+    document.addEventListener('touchstart', function (event) {
+      if (event.touches.length > 1) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    // Hard block for double-tap zooming
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+  </script>
+  <script type="module">
+    // Load real Buffer polyfill for any libraries that rely on global Buffer
+    import { Buffer } from "https://esm.sh/buffer";
+    window.Buffer = Buffer;
+  </script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'coral-sand': '#FBF9F4',
+            'coral-dark': '#3A3A3A',
+            'coral-blue': '#4A90E2',
+            'coral-green': '#50E3C2',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Global fix for form fields to ensure they are always clear/white background */
+    input, select, textarea {
+      background-color: white !important;
+      color: #1a202c !important; /* text-gray-900 */
+      /* iOS blocks zoom if font-size is 16px or higher */
+      font-size: 16px !important;
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: #a0aec0 !important; /* text-gray-400 */
+    }
+
+    /* Force full width and prevent overflow scrolling issues */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+      /* manipulation allows tapping but blocks double-tap-zoom and pinch-zoom */
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    @media print {
+      @page {
+        margin: 0;
+        size: auto;
+      }
+      
+      body {
+        visibility: hidden !important;
+        background: white !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      .printable-content-wrapper,
+      .printable-content-wrapper * {
+        visibility: visible !important;
+        position: static;
+      }
+
+      .printable-content-wrapper {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: white !important;
+        z-index: 9999;
+      }
+
+      .printable-label-modal,
+      .printable-label-modal * {
+        visibility: visible !important;
+      }
+      
+      .printable-label-modal {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background-color: white !important;
+        z-index: 10000;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      nav, header, aside, button, .print-hidden, .modal-backdrop {
+        display: none !important;
+      }
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "jsqr": "https://esm.sh/jsqr",
+    "qrcode": "https://esm.sh/qrcode",
+    "heic2any": "https://esm.sh/heic2any",
+    "html2canvas": "https://esm.sh/html2canvas@1.4.1",
+    "react-photo-album": "https://esm.sh/react-photo-album@3.0.2",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "@aws-sdk/client-s3": "https://esm.sh/@aws-sdk/client-s3@3.620.0?target=es2022&bundle=true&no-dts&external=fs,path,util,http,https,net,tls,os,child_process,process,url,zlib,crypto,stream",
+    "fs": "data:application/javascript,export const readFile = () => {}; export const readFileSync = () => {}; export const promises = { readFile: () => Promise.resolve() }; export const existsSync = () => false; export default { readFile, readFileSync, promises, existsSync };",
+    "path": "data:application/javascript,export const join = (...args) => args.join('/'); export const resolve = (...args) => args.join('/'); export const basename = (p) => p.split('/').pop(); export default { join, resolve, basename };",
+    "util": "data:application/javascript,export const promisify = (fn) => fn; export const inspect = () => ''; export default { promisify, inspect };",
+    "stream": "https://esm.sh/stream-browserify",
+    "crypto": "https://esm.sh/crypto-browserify",
+    "buffer": "https://esm.sh/buffer",
+    "vm": "data:application/javascript,export default {}",
+    "http": "data:application/javascript,export default {}",
+    "https": "data:application/javascript,export default {}",
+    "net": "data:application/javascript,export default {}",
+    "tls": "data:application/javascript,export default {}",
+    "os": "data:application/javascript,export default {}",
+    "child_process": "data:application/javascript,export default {}",
+    "process": "data:application/javascript,export default { env: {} }",
+    "url": "data:application/javascript,export const URL = window.URL; export const URLSearchParams = window.URLSearchParams; export default { URL, URLSearchParams };",
+    "zlib": "data:application/javascript,export default {}"
+  }
+}
+</script>
+  <!-- 3D Model Viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<link rel="stylesheet" href="https://esm.sh/react-photo-album@3.0.2/styles.css">
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

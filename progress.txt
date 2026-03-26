@@ -1,0 +1,96 @@
+AI DEVELOPMENT LOG & SYSTEM INTEGRITY PROTOCOL
+==============================================
+STATUS: ACTIVE
+VERSION: 15.6.13
+
+STRICT DIRECTIVE:
+1. MANDATORY: Cross-reference SiteDesignPage.tsx (Registry Targets) AND App.tsx (pageLocks) before every change.
+2. IF A COMPONENT IS 'LOCKED' (TRUE): PROHIBITED FROM MODIFYING.
+3. IF A DISCREPANCY IS DETECTED BETWEEN LOG AND UI: STOP AND REQUEST SYNC.
+4. REQUEST EXPLICIT USER AUTHORIZATION IN CHAT BEFORE OVERRIDING ANY LOCK.
+5. ALWAYS provide a concise summary of changes made at the end of every response.
+
+---
+
+CURRENT COMPONENT REGISTRY (BASELINE STATUS):
+[LOCKED = Permission Required | UNLOCKED = Open for Ops]
+
+PAGES & CORE MODULES (48):
+- addEditHub: LOCKED
+- anchors: LOCKED
+- archive: LOCKED
+- backupRestore: LOCKED
+- branchDetails: LOCKED
+- branches: LOCKED
+- collectionZones: LOCKED
+- dashboard: LOCKED
+- dataLoggers: LOCKED
+- deviceClusters: LOCKED
+- diveGear: LOCKED
+- environmental: LOCKED
+- experimentsHub: LOCKED
+- facilityHub: LOCKED
+- facilityRegistry: LOCKED
+- facilityTasks: LOCKED
+- floats: LOCKED
+- globalHeader: LOCKED
+- growthLedger: LOCKED
+- healthLedger: LOCKED
+- memberPortal: LOCKED
+- merchandise: LOCKED
+- monitoring: LOCKED
+- movementHub: LOCKED
+- notesTodo: LOCKED
+- nurseryTrees: LOCKED
+- operationalSchedule: LOCKED
+- peopleTeam: LOCKED
+- photoAlbum: UNLOCKED
+- photoViewer: UNLOCKED
+- prefixSettings: LOCKED
+- qrGenerator: LOCKED
+- raDetails: LOCKED
+- reef2Units: LOCKED
+- reef3Units: LOCKED
+- reports: LOCKED
+- restorationSchedule: LOCKED
+- rubbleAnchors: LOCKED
+- rules: LOCKED
+- settings: LOCKED
+- sites: LOCKED
+- spawning: LOCKED
+- speciesId: LOCKED
+- strings: LOCKED
+- substrateZones: LOCKED
+- systemBlueprint: LOCKED
+- tanks: LOCKED
+- trends: LOCKED
+
+GLOBAL MODALS & POPUPS (16):
+- anchorEditor: LOCKED
+- documentCropper: LOCKED
+- fullScreenViewer: LOCKED
+- gearLocker: LOCKED
+- globalScanner: LOCKED
+- healthDrillDown: LOCKED
+- missionPlanner: LOCKED
+- photoManager: LOCKED
+- qrLabelModal: LOCKED
+- siteEditor: LOCKED
+- speciesEditor: LOCKED
+- speciesSpecs: LOCKED
+- staffProfile: LOCKED
+- stockEditor: LOCKED
+- volunteerData: LOCKED
+- zoneEditor: LOCKED
+
+[Note: 4 nodes remain UNLOCKED in the UI to allow access to Site Design and Progress logs.]
+
+---
+
+DEVELOPMENT LEDGER:
+- V15.6.8: System Integrity Correction. Reverted SideMenu to its locked text-only design.
+- V15.6.9: Emergency Reversion. Deleted unauthorized 'photoViewer2' module.
+- V15.6.10: Universal Gallery Deployment. Added global 'Photo Album' page leveraging react-photo-album.
+- V15.6.11: Naming Alignment. Updated menu label and page title to exactly 'react photo album'.
+- V15.6.12: Gallery Comparison Mode. Enhanced PhotoAlbumPage with item selection logic and layout toggles.
+- V15.6.13: Library Integrity Patch. Corrected PhotoAlbumPage to use react-photo-album v3.x named exports and refactored renderPhoto to match v3 API, resolving the "Black screen" crash.
